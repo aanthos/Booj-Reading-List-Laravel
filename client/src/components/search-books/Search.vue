@@ -28,9 +28,10 @@ export default {
 
         }
     },
+    // TODO: access open library api here
     mounted () {
         axios
-            .get(API_BASE_URL + '/books')
+            .get()
     }
 }
 </script>

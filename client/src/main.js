@@ -15,8 +15,8 @@ const routes = [
 ]
 
 /**
- * Hash mode uses URL hash to simulate a full URL
- * so page won't be reloaded when URL changes
+ * Hash mode uses URL hash to simulate a full URL, whereas
+ * history mode ensures page won't be reloaded when URL changes
  * 
  * VueRouter router takes in routes from above
  */
