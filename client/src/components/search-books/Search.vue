@@ -11,7 +11,7 @@
 
 <script>
 import axios from 'axios'
-import { API_BASE_URL, OPEN_LIBRARY_API_URL, OPEN_LIBRARY_FORMAT_JSON_TAG } from '../config'
+import { API_BASE_URL, OPEN_LIBRARY_API_URL, OPEN_LIBRARY_FORMAT_JSON_TAG } from '../../config'
 
 /**
  * new Vue({
@@ -42,7 +42,9 @@ export default {
     },
     data () {
         return {
-
+            title: null,
+            coverPath: null,
+            description: null,
             loading: true,
             errored: false,
         }
@@ -50,9 +52,9 @@ export default {
     // TODO: access open library api here
     mounted () {
         axios
-            .get(OPEN_LIBRARY_API_URL + 'ISBN:0451526538' + OPEN_LIBRARY_FORMAT_JSON_TAG)
+            .get(OPEN_LIBRARY_API_URL + 'ISBN:0451526538' + '&jscmd=data' + OPEN_LIBRARY_FORMAT_JSON_TAG)
             .then(response => {
-                
+                this.title = response.data["ISBN:0451526538"].title;
             })
             .catch(error => {
                 console.log(error)
