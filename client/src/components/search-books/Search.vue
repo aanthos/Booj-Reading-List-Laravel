@@ -11,7 +11,24 @@
 
 <script>
 import axios from 'axios'
-import { API_BASE_URL } from '../config'
+import { API_BASE_URL, OPEN_LIBRARY_API_URL, OPEN_LIBRARY_FORMAT_JSON_TAG } from '../config'
+
+/**
+ * new Vue({
+  el: '#app',
+  data () {
+    return {
+      info: null
+    }
+  },
+  mounted () {
+    axios
+      .get('https://api.coindesk.com/v1/bpi/currentprice.json')
+      .then(response => (this.info = response))
+  }
+})
+ */
+
 
 
 /**
@@ -26,12 +43,22 @@ export default {
     data () {
         return {
 
+            loading: true,
+            errored: false,
         }
     },
     // TODO: access open library api here
     mounted () {
         axios
-            .get()
+            .get(OPEN_LIBRARY_API_URL + 'ISBN:0451526538' + OPEN_LIBRARY_FORMAT_JSON_TAG)
+            .then(response => {
+                
+            })
+            .catch(error => {
+                console.log(error)
+                this.errored = true
+            })
+            .finally(() => this.loading = false)
     }
 }
 </script>
