@@ -18,6 +18,7 @@
 
 <script>
 import axios from 'axios'
+//import AddBook from './AddBook.vue'
 import { OPEN_LIBRARY_API_URL, OPEN_LIBRARY_FORMAT_JSON_TAG } from '../../config'
 
 /**
@@ -26,16 +27,20 @@ import { OPEN_LIBRARY_API_URL, OPEN_LIBRARY_FORMAT_JSON_TAG } from '../../config
  */
 export default {
     name: 'search',
+    components: {
+        // AddBook
+    },
     props: {
         heading: String
     },
     data () {
         return {
+            radioButtonChecked: true,
             title: null,
             coverPath: null,
             description: null,
             searchInput: '',
-            searchType: '',
+            searchType: 'ISBN',
             loading: true,
             errored: false,
         }
@@ -64,7 +69,7 @@ export default {
                     this.title = response.data[this.searchType + ":" + this.searchInput].title;
                 })
                 // .catch(error => {
-                //     console.log(error)
+                //     console.log(JSON.parse(JSON.stringify(error)))
                 //     this.errored = true
                 // })
                 .finally(() => { 
@@ -72,7 +77,7 @@ export default {
                 })
 
             if(this.title == "" || this.title == null) {
-                this.title = "No results found. Please check your " + searchType + " code again."
+                this.title = "No results found. Please check your " + this.searchType + " code again."
             }
         }
     }
