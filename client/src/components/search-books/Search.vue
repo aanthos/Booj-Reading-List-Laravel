@@ -5,20 +5,24 @@
             v-model is a directive that creates two-way data bindings on form elements.
             Read more here: https://vuejs.org/v2/guide/forms.html
         -->
-        <form @submit.prevent="onSubmit">
+        <form @submit.prevent="onSubmit()">
             Search for your book:
             <input type="text" v-model.trim="searchInput"> <br>
             <input type ="radio" name="ISBN" value="ISBN" v-model="searchType"> ISBN<br>
-            <input type="submit">Submit<br>
+            <input type="submit" value="Submit">
         </form>
+
         <p>Test Title Here: {{ title }}</p>
+
         <p>Test search input here: {{ searchInput }}</p>
+
+        <AddBook v-if="loaded"></AddBook>
     </div>
 </template>
 
 <script>
 import axios from 'axios'
-//import AddBook from '.'
+import AddBook from './AddBook.vue'
 import { OPEN_LIBRARY_API_URL, OPEN_LIBRARY_FORMAT_JSON_TAG } from '../../config'
 
 /**
@@ -28,43 +32,48 @@ import { OPEN_LIBRARY_API_URL, OPEN_LIBRARY_FORMAT_JSON_TAG } from '../../config
 export default {
     name: 'search',
     components: {
-        // AddBook
+        AddBook
     },
     props: {
         heading: String
     },
     data () {
         return {
-            title: null,
+            title: '',
             coverPath: null,
             description: null,
             searchInput: '',
             searchType: 'ISBN',
-            loading: true,
+            loaded: false,
             errored: false,
+            error: ''
         }
     },
     methods: {
         onSubmit() {
-            // TODO: If value returned is not actual book name, tell user nothing was returned/invalid search/no results found
-            this.title == ""
+            this.title = ""
 
             axios
                 .get(OPEN_LIBRARY_API_URL + this.searchType + ":" + this.searchInput + '&jscmd=data' + OPEN_LIBRARY_FORMAT_JSON_TAG)
                 .then(response => {
                     this.title = response.data[this.searchType + ":" + this.searchInput].title;
                 })
-                // .catch(error => {
-                //     console.log(error)
-                //     this.errored = true
-                // })
-                .finally(() => { 
-                    this.loading = false
+                .catch(error => {
+                    //console.log(error)
+                    this.error = error,
+                    this.errored = true
+                })
+                .finally(() => {
+                    if(this.title == "" || this.title == null) {
+                        this.title = "No results found. Please check your " + this.searchType + " code again."
+                        this.loaded = false
+                    }
+                    else { 
+                        this.loaded = true
+                    }
                 })
 
-            if(this.title == "" || this.title == null) {
-                this.title = "No results found. Please check your " + this.searchType + " code again."
-            }
+            
         }
     }
 }
