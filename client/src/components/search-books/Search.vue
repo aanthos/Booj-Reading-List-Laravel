@@ -18,6 +18,7 @@
 
 <script>
 import axios from 'axios'
+//import AddBook from '.'
 import { OPEN_LIBRARY_API_URL, OPEN_LIBRARY_FORMAT_JSON_TAG } from '../../config'
 
 /**
@@ -26,6 +27,9 @@ import { OPEN_LIBRARY_API_URL, OPEN_LIBRARY_FORMAT_JSON_TAG } from '../../config
  */
 export default {
     name: 'search',
+    components: {
+        // AddBook
+    },
     props: {
         heading: String
     },
@@ -35,24 +39,11 @@ export default {
             coverPath: null,
             description: null,
             searchInput: '',
-            searchType: '',
+            searchType: 'ISBN',
             loading: true,
             errored: false,
         }
     },
-    // TODO: access open library api here
-    // mounted () {
-    //     axios
-    //         .get(OPEN_LIBRARY_API_URL + 'ISBN:0451526538' + '&jscmd=data' + OPEN_LIBRARY_FORMAT_JSON_TAG)
-    //         .then(response => {
-    //             this.title = response.data["ISBN:0451526538"].title;
-    //         })
-    //         .catch(error => {
-    //             console.log(error)
-    //             this.errored = true
-    //         })
-    //         .finally(() => this.loading = false)
-    // },
     methods: {
         onSubmit() {
             // TODO: If value returned is not actual book name, tell user nothing was returned/invalid search/no results found
@@ -72,7 +63,7 @@ export default {
                 })
 
             if(this.title == "" || this.title == null) {
-                this.title = "No results found. Please check your " + searchType + " code again."
+                this.title = "No results found. Please check your " + this.searchType + " code again."
             }
         }
     }
