@@ -1,5 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import BootstrapVue from 'bootstrap-vue'
+
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.config.productionTip = false
 
@@ -7,6 +11,11 @@ Vue.config.productionTip = false
  * VueRouter allows views to change without having to reload the page.
  */
 Vue.use(VueRouter)
+
+/**
+ * BootstrapVue allows the use of bootstrap styling
+ */
+Vue.use(BootstrapVue)
 
 import App from './App.vue'
 

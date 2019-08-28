@@ -7,7 +7,7 @@
         -->
         <form @submit.prevent="onSubmit()">
             Search for your book:
-            <input type="text" v-model.trim="searchInput"> <br>
+            <input type="text" v-model.trim="searchInput"><br>
             <input type ="radio" name="ISBN" value="ISBN" v-model="searchType"> ISBN<br>
             <input type="submit" value="Submit">
         </form>
@@ -16,7 +16,7 @@
 
         <p>Test search input here: {{ searchInput }}</p>
 
-        <AddBook v-if="loaded"></AddBook>
+        <AddBook v-if="loaded" :title="title" :coverPath="coverPath" :description="description"></AddBook>
     </div>
 </template>
 
@@ -52,11 +52,13 @@ export default {
     methods: {
         onSubmit() {
             this.title = ""
-
+            var searchParameters = this.searchType + ":" + this.searchInput
             axios
                 .get(OPEN_LIBRARY_API_URL + this.searchType + ":" + this.searchInput + '&jscmd=data' + OPEN_LIBRARY_FORMAT_JSON_TAG)
                 .then(response => {
                     this.title = response.data[this.searchType + ":" + this.searchInput].title;
+                    this.coverPath = response.data[searchParameters].cover.medium;
+                    //this.description = response.data[searchParameters].subtitle;
                 })
                 .catch(error => {
                     //console.log(error)
