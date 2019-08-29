@@ -1,9 +1,12 @@
 import Vue from 'vue'
+//import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import BootstrapVue from 'bootstrap-vue'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+import { store } from './store/store'
 
 Vue.config.productionTip = false
 
@@ -16,6 +19,13 @@ Vue.use(VueRouter)
  * BootstrapVue allows the use of bootstrap styling
  */
 Vue.use(BootstrapVue)
+
+/**
+ * Vuex is a state management pattern + library.
+ * Serves as a centralized store for all components in an application.
+ * Now found in src/store/source.js
+ */
+//Vue.use(Vuex)
 
 import App from './App.vue'
 
@@ -35,6 +45,7 @@ const router = new VueRouter({
 })
 
 new Vue({
+  store,
   router,
   render: h => h(App),
 }).$mount('#app')
