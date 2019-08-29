@@ -10,11 +10,12 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ title }}</h5>
                         <!-- <p class="card-text">{{ description }}</p> -->
-                        <button type="button" class="btn btn-primary">+</button>
+                        <button @click="addToUserList" type="button" class="btn btn-primary">+</button>
                     </div>
                 </div>
             </div>
         </div>
+        <p>Currently in books data store: {{ $store.getters.books }}</p>
     </div>
 </template>
 
@@ -26,11 +27,15 @@ export default {
         coverPath: String,
         //authors: String,
     },
-    data () { 
-        return {
-            heading: ''
+    methods: {
+        /**
+         * Adds book to Vuex data store in books module
+         */
+        addToUserList() {
+            var book = [this.title, this.coverPath]
+            this.$store.commit("pushBookToUserList", book)
         }
-    },
+    }
 }
 </script>
 

@@ -74,8 +74,6 @@ export default {
                         this.loaded = true
                     }
                 })
-
-            
         }
     }
 }
