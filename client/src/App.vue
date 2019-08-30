@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <Search heading="Search Books"/>
-    <BookList heading="This is the book list header"/>
+    <Search/>
+    <BookList/>
   </div>
 </template>
 

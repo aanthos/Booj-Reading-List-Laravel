@@ -23,8 +23,9 @@ export const books = {
          */
         pushBookToUserList(state, receivedBook) {
             const book = {
-                title: receivedBook[0],
-                coverPath: receivedBook[1],
+                id: receivedBook[0],
+                title: receivedBook[1],
+                coverPath: receivedBook[2],
             } 
             state.books.push(book)
         }

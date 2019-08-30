@@ -1,9 +1,8 @@
 <template>
     <!-- Consider v-if to hide or show components -->
-    <div id="Book">
+    <div id="book">
         <h1>{{ title }}</h1>
-        <img src="https://robertnielsen21.files.wordpress.com/2017/03/tloll.jpg"/>
-        <p>Description</p>
+        <img v-bind:src="coverPath" class="card-img-top">
     </div>
 </template>
 
@@ -13,7 +12,6 @@ export default {
     props: {
         title: String,
         coverPath: String,
-        description: String
     },
     // removes book item from list after pressing
     methods: {

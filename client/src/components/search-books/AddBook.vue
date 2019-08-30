@@ -23,16 +23,17 @@
 export default {
     name: 'addbook',
     props: { 
+        id: Number,
         title: String,
         coverPath: String,
-        //authors: String,
     },
+
     methods: {
         /**
          * Adds book to Vuex data store in books module
          */
         addToUserList() {
-            var book = [this.title, this.coverPath]
+            var book = [this.id, this.title, this.coverPath]
             this.$store.commit("pushBookToUserList", book)
         }
     }

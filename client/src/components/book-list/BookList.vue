@@ -1,7 +1,11 @@
 <template>
     <div id="bookList">
-        <h1>{{ heading }}</h1>
-        <Book title="Test Name"/>
+        <Book 
+            v-for="book in $store.getters.books"
+            v-bind:key="book.id"
+            v-bind:title="book.title"
+            v-bind:coverPath="book.coverPath"
+        />
     </div>
 </template>
 
@@ -13,9 +17,5 @@ export default {
     components: {
         Book
     },
-    props: {
-        heading: String
-    }
-    
 }
 </script>
