@@ -1,12 +1,13 @@
 <template>
     <div id="bookList">
-        <Book 
-            v-for="book in $store.getters.books"
-            v-bind:key="book.id"
-            v-bind:title="book.title"
-            v-bind:coverPath="book.coverPath"
-        />
-    </div>
+        <h2>Your Book List</h2>
+            <Book 
+                v-for="book in $store.getters.books"
+                v-bind:key="book.id"
+                v-bind:title="book.title"
+                v-bind:coverPath="book.coverPath">
+            </Book>
+        </div>
 </template>
 
 <script>

@@ -1,21 +1,19 @@
 <template>
     <div id="addbook">
-        <h1>Add Book section</h1>
+        <h2>Add Book section</h2>
         <div class="card">
             <div class="row no-gutters">
-                <div class="col-md-5">
+                <div class="col-md-3">
                     <img v-bind:src="coverPath" class="card-img-top">
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-9">
                     <div class="card-body">
                         <h5 class="card-title">{{ title }}</h5>
-                        <!-- <p class="card-text">{{ description }}</p> -->
                         <button @click="addToUserList" type="button" class="btn btn-primary">+</button>
                     </div>
                 </div>
             </div>
         </div>
-        <p>Currently in books data store: {{ $store.getters.books }}</p>
     </div>
 </template>
 
