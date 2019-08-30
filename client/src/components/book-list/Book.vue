@@ -1,8 +1,16 @@
 <template>
     <!-- Consider v-if to hide or show components -->
     <div id="book">
-        <h1>{{ title }}</h1>
-        <img v-bind:src="coverPath" class="card-img-top">
+        <div class="card">
+            <div class="row">
+                <div class="col-md-2">
+                    <img v-bind:src="coverPath" class="card-img-top">
+                </div>
+                <div class="col-md-10">
+                    <h5>{{ title }}</h5>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -16,7 +24,7 @@ export default {
     // removes book item from list after pressing
     methods: {
         onRemoveButton: function () {
-
+            
         }
     }
 }
