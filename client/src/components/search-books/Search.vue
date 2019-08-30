@@ -1,6 +1,5 @@
 <template>
     <div id="search">
-        <h1>{{ heading }}</h1>
         <!-- 
             v-model is a directive that creates two-way data bindings on form elements.
             Read more here: https://vuejs.org/v2/guide/forms.html
@@ -16,7 +15,7 @@
 
         <p>Test search input here: {{ searchInput }}</p>
 
-        <AddBook v-if="loaded" :title="title" :coverPath="coverPath" :description="description"></AddBook>
+        <AddBook v-if="loaded" :id="id" :title="title" :coverPath="coverPath" :description="description"></AddBook>
     </div>
 </template>
 
@@ -34,14 +33,11 @@ export default {
     components: {
         AddBook
     },
-    props: {
-        heading: String
-    },
     data () {
         return {
+            id: 0,
             title: '',
             coverPath: null,
-            description: null,
             searchInput: '',
             searchType: 'ISBN',
             loaded: false,
@@ -58,7 +54,7 @@ export default {
                 .then(response => {
                     this.title = response.data[this.searchType + ":" + this.searchInput].title;
                     this.coverPath = response.data[searchParameters].cover.medium;
-                    //this.description = response.data[searchParameters].subtitle;
+                    this.id++
                 })
                 .catch(error => {
                     //console.log(error)
