@@ -28,6 +28,14 @@ export const books = {
                 coverPath: receivedBook[2],
             } 
             state.books.push(book)
+        },
+
+        /**
+         * 
+         */
+        removeBookFromUserList(state, id) {
+            let position = state.books.findIndex(i => i.id === id);
+            state.books.splice(position, 1);
         }
     },
 

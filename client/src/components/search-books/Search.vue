@@ -56,7 +56,7 @@ export default {
                 .then(response => {
                     this.title = response.data[this.searchType + ":" + this.searchInput].title;
                     this.coverPath = response.data[searchParameters].cover.medium;
-                    this.id++
+                    this.id = this.id + 1
                 })
                 .catch(error => {
                     //console.log(error)
