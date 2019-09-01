@@ -13,11 +13,13 @@
                 </div>
                 <div class="col-md-1">
                     <div class="card-body">
+                    <button>^</button>
                     <button @click="removeFromUserList" id="remove" class="btn btn-danger">-</button>
                     </div>
                 </div>
             </div>
         </div>
+        {{ this.id }}
     </div>
 </template>
 
@@ -25,7 +27,7 @@
 export default {
     name: 'Book',
     props: {
-        id: Number,
+        id: String,
         title: String,
         coverPath: String,
     },

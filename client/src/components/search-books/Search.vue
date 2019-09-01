@@ -13,11 +13,14 @@
             </form>
 
             <AddBook 
-                v-if="loaded" 
+                v-if="loaded"
+                v-bind:key="id"
                 :id="id" 
                 :title="title" 
                 :coverPath="coverPath">
             </AddBook>
+
+            <p v-if="errored">Could not find book. Please try again.</p>
     </div>
 </template>
 
@@ -49,29 +52,33 @@ export default {
     },
     methods: {
         onSubmit() {
-            this.title = ""
             var searchParameters = this.searchType + ":" + this.searchInput
             axios
                 .get(OPEN_LIBRARY_API_URL + this.searchType + ":" + this.searchInput + '&jscmd=data' + OPEN_LIBRARY_FORMAT_JSON_TAG)
                 .then(response => {
                     this.title = response.data[this.searchType + ":" + this.searchInput].title;
                     this.coverPath = response.data[searchParameters].cover.medium;
-                    this.id = this.id + 1
+                    this.loaded = true
+                    this.id += 1
+                    this.errored = false
                 })
                 .catch(error => {
                     //console.log(error)
                     this.error = error,
-                    this.errored = true
+                    this.errored = true,
+                    this.title = "No results found. Please check your code"
+                    this.loaded = false
                 })
-                .finally(() => {
-                    if(this.title == "" || this.title == null) {
-                        this.title = "No results found. Please check your " + this.searchType + " code again."
-                        this.loaded = false
-                    }
-                    else { 
-                        this.loaded = true
-                    }
-                })
+                // .finally(() => {
+                //     if(this.title == "" || this.title == null) {
+                //         this.title = "No results found. Please check your " + this.searchType + " code again."
+                //         this.loaded = false
+                //     }
+                //     else { 
+                //         this.loaded = true
+                //         this.id += 1
+                //     }
+                // })
         }
     }
 }
