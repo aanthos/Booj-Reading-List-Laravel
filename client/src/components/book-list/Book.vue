@@ -26,14 +26,14 @@
 export default {
     name: 'Book',
     props: {
-        id: String,
+        isbn: String,
         title: String,
         coverPath: String,
     },
     // removes book item from list after pressing
     methods: {
         removeFromUserList: function () {
-            this.$store.commit("removeBookFromUserList", this.id)
+            this.$store.commit("removeBookFromUserList", this.isbn)
         }
     }
 }
