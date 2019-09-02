@@ -8,6 +8,8 @@
                 v-bind:title="book.title"
                 v-bind:coverPath="book.coverPath">
             </Book>
+            <button @click="sortAlphabeticallyAscending" class="btn btn-primary">Sort Alphabetically Ascending</button>
+            <button @click="sortAlphabeticallyDescending" class="btn btn-primary">Sort Alphabetically Descending</button>
         </div>
 </template>
 
@@ -19,5 +21,14 @@ export default {
     components: {
         Book
     },
+    methods: {
+        sortAlphabeticallyAscending() {
+            this.$store.commit("sortBooksAlphabeticallyAscending")
+        },
+
+        sortAlphabeticallyDescending() {
+            this.$store.commit("sortBooksAlphabeticallyDescending")
+        }
+    }
 }
 </script>
