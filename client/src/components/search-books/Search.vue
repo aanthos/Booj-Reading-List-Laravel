@@ -14,8 +14,8 @@
 
             <AddBook 
                 v-if="loaded"
-                v-bind:key="id"
-                :id="id" 
+                v-bind:key="isbn"
+                :isbn="isbn"
                 :title="title" 
                 :coverPath="coverPath">
             </AddBook>
@@ -41,6 +41,7 @@ export default {
     data () {
         return {
             id: 0,
+            isbn: '',
             title: '',
             coverPath: null,
             searchInput: '',
@@ -56,7 +57,8 @@ export default {
             axios
                 .get(OPEN_LIBRARY_API_URL + this.searchType + ":" + this.searchInput + '&jscmd=data' + OPEN_LIBRARY_FORMAT_JSON_TAG)
                 .then(response => {
-                    this.title = response.data[this.searchType + ":" + this.searchInput].title;
+                    this.isbn = response.data[searchParameters].identifiers.isbn_13[0]
+                    this.title = response.data[searchParameters].title;
                     this.coverPath = response.data[searchParameters].cover.medium;
                     this.loaded = true
                     this.id += 1
@@ -69,16 +71,6 @@ export default {
                     this.title = "No results found. Please check your code"
                     this.loaded = false
                 })
-                // .finally(() => {
-                //     if(this.title == "" || this.title == null) {
-                //         this.title = "No results found. Please check your " + this.searchType + " code again."
-                //         this.loaded = false
-                //     }
-                //     else { 
-                //         this.loaded = true
-                //         this.id += 1
-                //     }
-                // })
         }
     }
 }

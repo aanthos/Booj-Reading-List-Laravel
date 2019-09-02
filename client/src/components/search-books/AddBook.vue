@@ -14,6 +14,7 @@
                 </div>
             </div>
         </div>
+        <p v-if="error">{{ title }} (ISBN: {{ isbn }}) is already in your book list.</p>
     </div>
 </template>
 
@@ -21,18 +22,39 @@
 export default {
     name: 'addbook',
     props: { 
-        id: Number,
+        isbn: String,
         title: String,
         coverPath: String,
     },
 
+    data () {
+        return {
+            error: false,
+        }
+    },
+
     methods: {
         /**
-         * Adds book to Vuex data store in books module
+         * Adds book to Vuex data store in books module if not already in user's book list
          */
         addToUserList() {
-            var book = [this.id, this.title, this.coverPath]
-            this.$store.commit("pushBookToUserList", book)
+            var potentialBook = [this.isbn, this.title, this.coverPath]
+            var found = false
+
+            for( var i = 0; i < this.$store.getters.books.length; i++) {
+                if(this.$store.getters.books[i].isbn == this.isbn) {
+                    found = true
+                    break
+                }
+            }
+
+            if(!found) {
+                this.$store.commit("pushBookToUserList", potentialBook)
+                this.error = false
+            }
+            else {
+                this.error = true
+            }
         }
     }
 }
