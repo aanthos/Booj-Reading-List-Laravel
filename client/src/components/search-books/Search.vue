@@ -40,7 +40,6 @@ export default {
     },
     data () {
         return {
-            id: 0,
             isbn: '',
             title: '',
             coverPath: null,
@@ -61,7 +60,6 @@ export default {
                     this.title = response.data[searchParameters].title;
                     this.coverPath = response.data[searchParameters].cover.medium;
                     this.loaded = true
-                    this.id += 1
                     this.errored = false
                 })
                 .catch(error => {

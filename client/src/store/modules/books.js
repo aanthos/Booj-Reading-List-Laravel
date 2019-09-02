@@ -34,8 +34,8 @@ export const books = {
          * Takes in Book id and finds out the index position of the Book in state.books.
          * Then removes this book.
          */
-        removeBookFromUserList(state, id) {
-            let position = state.books.findIndex(i => i.id === id);
+        removeBookFromUserList(state, isbn) {
+            let position = state.books.findIndex(book => book.isbn === isbn);
             state.books.splice(position, 1);
         }
     },
