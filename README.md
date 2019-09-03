@@ -1,6 +1,24 @@
-https://developer.okta.com/blog/2019/01/15/crud-app-laravel-vue
+# Booj Reading List
+*Beware of the person of one book. -- Thomas Aquinas*
+## Tasks
+Compose a site using the [Laravel](https://laravel.com/) or Vue framework that allows the user to create a list of books they would like to read. Users should be able to perform the following actions:
+* Connect to a publically available API
+* Create Postman collection and Vue app OR Laravel App 
+* Add or remove items from the list
+* Change the order of the items in the list
+* Sort the list of items
+* Display a detail page with at least 3 points of data to display
+* Include unit tests
+* Deploy it on the cloud - be prepared to describe your process on deployment
 
-** look at config.js and modify the paths to the API BASE URL if not using localhost
+## Tasks Completed
+* Connect to a publically available API
+* Create Postman collection and Vue app
+* Add or remove items from the list
+* Sort the list of items
+* (partially) Include unit tests
 
-** modify database connection to work outside of sqlite/make the DB_DATABASE path in the .env file NOT static
-	*** Modify the APP_URL field if not using localhost in .env
+## Tasks Ongoing
+* Change the order of the items in the list
+* Display a detail page with at least 3 points of data to display
+* Deploy it on the cloud
