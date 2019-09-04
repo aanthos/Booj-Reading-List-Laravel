@@ -13,8 +13,9 @@
                 </div>
                 <div class="col-md-1">
                     <div class="card-body">
-                    <button>^</button>
+                    <button @click="shiftUp" class="btn btn-primary">^</button>
                     <button @click="removeFromUserList" id="remove" class="btn btn-danger">-</button>
+                    <button @click="shiftDown" class="btn btn-primary">v</button>
                     </div>
                 </div>
             </div>
@@ -30,10 +31,19 @@ export default {
         title: String,
         coverPath: String,
     },
-    // removes book item from list after pressing
+
     methods: {
-        removeFromUserList: function () {
+        // removes book item from list after pressing using Vuex books module
+        removeFromUserList() {
             this.$store.commit("removeBookFromUserList", this.isbn)
+        },
+        // shifts book item up in the list using Vuex books module
+        shiftUp() {
+            this.$store.commit("shiftBookUp", this.isbn)
+        },
+        // shifts book item down in the list using Vuex books module
+        shiftDown() {
+            this.$store.commit("shiftBookDown", this.isbn)
         }
     }
 }

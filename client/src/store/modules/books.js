@@ -35,8 +35,8 @@ export const books = {
          * Then removes this book.
          */
         removeBookFromUserList(state, isbn) {
-            let position = state.books.findIndex(book => book.isbn === isbn);
-            state.books.splice(position, 1);
+            let position = state.books.findIndex(book => book.isbn === isbn)
+            state.books.splice(position, 1)
         },
 
         /**
@@ -53,7 +53,49 @@ export const books = {
         sortBooksAlphabeticallyDescending(state) {
             state.books.sort((book1, book2) =>
                 book2.title.localeCompare(book1.title))
-        }
+        },
+
+        /**
+         * Shifts book up one in the queue/list
+         */
+        shiftBookUp(state, isbn) {
+            let position = state.books.findIndex(book => book.isbn === isbn)
+            //let sizeOfBooks = state.books.length
+            let tempBooksArray = state.books
+
+            if(position != 0) {
+                var targetBook = tempBooksArray[position]
+                tempBooksArray.splice(position, 1)
+                tempBooksArray.splice((position - 1), 0, targetBook)
+            }
+
+            state.books = tempBooksArray
+        },
+
+        /**
+         * Shifts the book down one in the queue/list
+         */
+        shiftBookDown(state, isbn) {
+            let position = state.books.findIndex(book => book.isbn === isbn)
+            let sizeOfBooks = state.books.length
+            let tempBooksArray = state.books
+
+            if(position != (sizeOfBooks - 1)) {
+                var targetBook = tempBooksArray[position]
+                tempBooksArray.splice(position, 1)
+                tempBooksArray.splice((position + 1), 0, targetBook)
+            }
+        },
+
+        /**
+         * function arraymove(arr, fromIndex, toIndex) {
+    var element = arr[fromIndex];
+    arr.splice(fromIndex, 1);
+    arr.splice(toIndex, 0, element);
+}
+         */
+
+
     },
 
     getters: {
