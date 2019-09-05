@@ -1,5 +1,4 @@
 <template>
-    <!-- Consider v-if to hide or show components -->
     <div id="book">
         <div class="card">
             <div class="row no-gutters">
