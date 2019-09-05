@@ -11,7 +11,8 @@
 export const books = {
     state: {
         /**
-         * books is an array of book, each of which contains title and coverPath JSON fields
+         * books is an array of book, each of which contains 
+         * isbn, title, coverPath, author, publisher, & publishDate JSON fields
          */
         books: [],
         /**
@@ -36,6 +37,9 @@ export const books = {
                 isbn: receivedBook[0],
                 title: receivedBook[1],
                 coverPath: receivedBook[2],
+                author: receivedBook[3],
+                publisher: receivedBook[4],
+                publishDate: receivedBook[5],
             }
             state.books.push(book)
         },

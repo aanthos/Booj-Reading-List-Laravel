@@ -1,15 +1,11 @@
 <template>
     <div id="search">
-        <h4>Search for a book</h4>
-            <!-- 
-                v-model is a directive that creates two-way data bindings on form elements.
-                Read more here: https://vuejs.org/v2/guide/forms.html
-            -->
             <form @submit.prevent="onSubmit()">
-                Search for your book:
-                <input type="text" v-model.trim="searchInput"><br>
-                <input type ="radio" name="ISBN" value="ISBN" v-model="searchType"> ISBN<br>
+                <input type="text" v-model.trim="searchInput">
                 <button type="submit" value="Submit" class="btn btn-primary">Search Book</button>
+                <br>
+                By:
+                <input type ="radio" name="ISBN" value="ISBN" v-model="searchType"> ISBN
             </form>
 
             <AddBook 
@@ -17,7 +13,10 @@
                 v-bind:key="isbn"
                 :isbn="isbn"
                 :title="title" 
-                :coverPath="coverPath">
+                :coverPath="coverPath"
+                :author="author"
+                :publisher="publisher"
+                :publishDate="publishDate">
             </AddBook>
 
             <p v-if="errored">Could not find book. Please try again.</p>
@@ -43,6 +42,9 @@ export default {
             isbn: '',
             title: '',
             coverPath: null,
+            author: '',
+            publisher: '',
+            publishDate: '',
             searchInput: '',
             searchType: 'ISBN',
             loaded: false,
@@ -57,8 +59,11 @@ export default {
                 .get(OPEN_LIBRARY_API_URL + this.searchType + ":" + this.searchInput + '&jscmd=data' + OPEN_LIBRARY_FORMAT_JSON_TAG)
                 .then(response => {
                     this.isbn = response.data[searchParameters].identifiers.isbn_13[0]
-                    this.title = response.data[searchParameters].title;
-                    this.coverPath = response.data[searchParameters].cover.medium;
+                    this.title = response.data[searchParameters].title
+                    this.coverPath = response.data[searchParameters].cover.medium
+                    this.author = response.data[searchParameters].authors[0].name
+                    this.publisher = response.data[searchParameters].publishers[0].name
+                    this.publishDate = response.data[searchParameters].publish_date
                     this.loaded = true
                     this.errored = false
                 })

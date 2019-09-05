@@ -1,6 +1,6 @@
 <template>
     <div id="addbook">
-        <h2>Add Book section</h2>
+        <h4>Search Results</h4>
         <div class="card">
             <div class="row no-gutters">
                 <div class="col-md-3">
@@ -9,12 +9,13 @@
                 <div class="col-md-9">
                     <div class="card-body">
                         <h5 class="card-title">{{ title }}</h5>
-                        <button @click="addToUserList" type="button" class="btn btn-primary">+</button>
+                        <p>{{ author }}</p>
+                        <button @click="addToUserList" type="button" class="btn btn-primary">Add to List</button>
                     </div>
                 </div>
             </div>
         </div>
-        <p v-if="error">{{ title }} (ISBN: {{ isbn }}) is already in your book list.</p>
+        <p class="error-text" v-if="error">{{ title }} (ISBN: {{ isbn }}) is already in your book list.</p>
     </div>
 </template>
 
@@ -25,6 +26,9 @@ export default {
         isbn: String,
         title: String,
         coverPath: String,
+        author: String,
+        publisher: String,
+        publishDate: String,
     },
 
     data () {
@@ -38,7 +42,7 @@ export default {
          * Adds book to Vuex data store in books module if not already in user's book list
          */
         addToUserList() {
-            var potentialBook = [this.isbn, this.title, this.coverPath]
+            var potentialBook = [this.isbn, this.title, this.coverPath, this.author, this.publisher, this.publishDate]
             var found = false
 
             for( var i = 0; i < this.$store.getters.books.length; i++) {
@@ -61,6 +65,11 @@ export default {
 </script>
 
 <style scoped>
+
+#addbook {
+    padding-top: 50px;
+}
+
 .card {
     max-width: 500px;
     margin: auto;
@@ -70,5 +79,10 @@ export default {
 .card-img-top {
     padding: 5px;
     object-fit: cover;
+}
+
+.error-text {
+    color: red;
+    font-weight: bold;
 }
 </style>
