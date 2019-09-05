@@ -17,8 +17,8 @@ Compose a site using the [Laravel](https://laravel.com/) or Vue framework that a
 * Add or remove items from the list
 * Change the order of the items in the list
 * Sort the list of items
-* (partially) Include unit tests
+* Display a detail page with at least 3 points of data to display
 
 ## Tasks Ongoing
-* Display a detail page with at least 3 points of data to display
 * Deploy it on the cloud
+* (partially) Include unit tests
