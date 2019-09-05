@@ -5,10 +5,12 @@
         <a class="navbar-brand">Reading List</a>
       </nav>
     </header>
-    <div class="header">
-      <h1 id="heading">Reading List</h1>
-      <p id="lead">Search the Open Library database to find books and add them to your book list.</p>
-    </div>
+    <section id="aboutSection">
+      <div id="aboutContainer">
+        <h1 id="title">Reading List</h1>
+        <p id="lead">Search the Open Library database to find books and add them to your book list.</p>
+      </div>
+    </section>
     <div class="container">
       <div class="row">
         <div class="col-md-7">
@@ -19,9 +21,7 @@
         </div>
       </div>
     </div>
-    <div id="drawer">
-      <BookDetails/>
-    </div>
+    <BookDetails/>
   </div>
 </template>
 
@@ -46,7 +46,11 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  /* color: #2c3e50; */
+}
+
+.navbar-brand{
+  color: #ffffff !important;
 }
 
 .container {
@@ -54,20 +58,18 @@ export default {
   margin: auto;
 }
 
-#drawer {
-  display: flex;
-  min-height: 100%;
-  background-color: green;
+
+#aboutSection {
+  padding: 50px;
 }
 
-.header {
+#aboutContainer {
   max-width: 40rem;
   margin-left: auto;
   margin-right: auto;
-  padding-bottom: 50px;
 }
 
-#heading {
+#title {
   font-weight: 300;
 }
 
