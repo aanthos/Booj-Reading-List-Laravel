@@ -11,9 +11,19 @@
 export const books = {
     state: {
         /**
-         * books is an array of book, each of which title and coverPath JSON fields
+         * books is an array of book, each of which contains title and coverPath JSON fields
          */
-        books: []
+        books: [],
+        /**
+         * showDetailsPage will turn true when book is selected on book list.
+         * Used in BookDetails.vue to bring up details page for the selected book.
+         */
+        showDetailsPage: false,
+        /**
+         * selectedBookDetails contains a single Book object after it was clicked on the list.
+         * Used in BookDetails.vue to bring up details of selected book.
+         */
+        selectedBookDetails: null,
     },
 
     mutations: {
@@ -85,21 +95,33 @@ export const books = {
                 tempBooksArray.splice(position, 1)
                 tempBooksArray.splice((position + 1), 0, targetBook)
             }
+
+            state.books = tempBooksArray
         },
 
         /**
-         * function arraymove(arr, fromIndex, toIndex) {
-    var element = arr[fromIndex];
-    arr.splice(fromIndex, 1);
-    arr.splice(toIndex, 0, element);
-}
+         * Closes BookDetails page when close button is pressed.
          */
+        closeBookDetailsPage(state) {
+            state.showDetailsPage = false
+        },
 
-
+        /**
+         * Changes state.selectedBookDetails to hold Book object that was selected on list
+         * for display on the BookDetails page.
+         * Also opens BookDetails page 
+         */
+        selectBookForDetails(state, isbn) {
+            state.showDetailsPage = true
+            let position = state.books.findIndex(book => book.isbn === isbn)
+            state.selectedBookDetails = state.books[position]
+        }
     },
 
     getters: {
-        books: state => state.books
+        books: state => state.books,
+        showDetailsPage: state => state.showDetailsPage,
+        selectedBookDetails: state => state.selectedBookDetails,
     }
 
 

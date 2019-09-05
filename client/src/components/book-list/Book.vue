@@ -9,6 +9,7 @@
                 <div class="col-md-8">
                     <div class="card-title">
                         <h5>{{ title }}</h5>
+                        <button @click="selectForDetails">Display Details</button>
                     </div>
                 </div>
                 <div class="col-md-1">
@@ -44,6 +45,10 @@ export default {
         // shifts book item down in the list using Vuex books module
         shiftDown() {
             this.$store.commit("shiftBookDown", this.isbn)
+        },
+        // selects this book item in Vuex books module to hold this book data for BookDetails.vue
+        selectForDetails() {
+            this.$store.commit("selectBookForDetails", this.isbn)
         }
     }
 }
