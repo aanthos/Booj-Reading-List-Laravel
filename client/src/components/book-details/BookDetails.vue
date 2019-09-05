@@ -14,7 +14,6 @@
                 <p>Publish Date: {{ $store.getters.selectedBookDetails.publishDate }}</p>
                 <br>
                 <p>ISBN: {{ $store.getters.selectedBookDetails.isbn }}</p>
-            
             </div>
         </div>
         </transition>
