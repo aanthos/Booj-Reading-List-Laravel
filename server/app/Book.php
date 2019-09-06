@@ -11,6 +11,6 @@ class Book extends Model
      * You can pass array to the create function of the model with the data you want to get assigned.
      */
     protected $fillable = [
-        'name', 'isbn', 'title', 'authors', 'publishers', 'publishDate', 'imgPath'
+        'name', 'isbn', 'title', 'author', 'coverPath', 'publisher', 'publishDate'
     ];
 }

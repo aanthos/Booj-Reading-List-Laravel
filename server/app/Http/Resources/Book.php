@@ -20,10 +20,10 @@ class Book extends JsonResource
             'name'          => $this->name,
             'isbn'          => $this->isbn,
             'title'         => $this->title,
-            'authors'       => $this->authors,
-            'publishers'    => $this->publishers,
+            'coverPath'     => $this->coverPath,
+            'author'        => $this->author,
+            'publisher'     => $this->publisher,
             'publishDate'   => $this->publishDate,
-            'imgPath'       => $this->imgPath,
             'created_at'    => $this->created_at,
             'updated_at'    => $this->updated_at,
         ];
