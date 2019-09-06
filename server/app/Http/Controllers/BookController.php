@@ -48,10 +48,10 @@ class BookController extends Controller
             'name'          => 'required|max:255',
             'isbn'          => '', 
             'title'         => '', 
-            'authors'       => '', 
-            'publishers'    => '', 
+            'coverPath'       => '',
+            'author'       => '', 
+            'publisher'    => '', 
             'publishDate'   => '', 
-            'imgPath'       => '',
         ]);
 
         $book = Book::create($request->all());
