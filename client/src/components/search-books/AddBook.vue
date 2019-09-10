@@ -8,9 +8,9 @@
                 </div>
                 <div class="col-md-9">
                     <div class="card-body">
-                        <h5 class="card-title">{{ title }}</h5>
-                        <p>{{ author }}</p>
-                        <button @click="addToUserList" type="button" class="btn btn-primary">Add to List</button>
+                        <h5 id="book-title" class="card-title">{{ title }}</h5>
+                        <p id="author">{{ author }}</p>
+                        <button @click="addToUserList" type="button" class="click">Add to List</button>
                     </div>
                 </div>
             </div>
