@@ -19,7 +19,7 @@
                 :publishDate="publishDate">
             </AddBook>
 
-            <p v-if="errored">Could not find book. Please try again.</p>
+            <p v-if="errored" id="errored">Could not find book using {{ isbn }} in the database. Please try again or use other code.</p>
     </div>
 </template>
 
@@ -68,10 +68,8 @@ export default {
                     this.errored = false
                 })
                 .catch(error => {
-                    //console.log(error)
                     this.error = error,
                     this.errored = true,
-                    this.title = "No results found. Please check your code"
                     this.loaded = false
                 })
         }
@@ -81,5 +79,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+#errored {
+    color: red;
+}
 </style>

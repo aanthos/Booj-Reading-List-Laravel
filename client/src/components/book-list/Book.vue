@@ -3,11 +3,11 @@
         <div class="card">
             <div class="row no-gutters">
                 <div class="col-md-2">
-                    <img v-bind:src="coverPath" class="card-img-top">
+                    <img id="book-cover-image" v-bind:src="coverPath" class="card-img-top">
                 </div>
                 <div class="col-md-8">
                     <div class="card-title">
-                        <h5>{{ title }}</h5>
+                        <h5 id="book-title">{{ title }}</h5>
                         <button @click="selectForDetails">Display Details</button>
                     </div>
                 </div>
