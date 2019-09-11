@@ -4,15 +4,19 @@
         <div id="drawer" v-if="$store.getters.showDetailsPage">
             <div id="content">
                 <button
-                    class="close" 
+                    @click="closeDetailsPage"
                     id="closeDetailsButton"
-                    @click="closeDetailsPage">x</button><br>
+                    class="btn btn-outline-light">
+                    <v-icon name="times"/>
+                </button>
+                <br>
                 <img id="detailsImage" v-bind:src="$store.getters.selectedBookDetails.coverPath">
                 <h4>{{ $store.getters.selectedBookDetails.title }}</h4>
                 <h5>{{ $store.getters.selectedBookDetails.author }}</h5>
+                <br>
+                <br>
                 <p>Publisher: {{ $store.getters.selectedBookDetails.publisher }}</p>
                 <p>Publish Date: {{ $store.getters.selectedBookDetails.publishDate }}</p>
-                <br>
                 <p>ISBN: {{ $store.getters.selectedBookDetails.isbn }}</p>
             </div>
         </div>
