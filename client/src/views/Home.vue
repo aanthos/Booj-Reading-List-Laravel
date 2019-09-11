@@ -1,10 +1,5 @@
 <template>
   <div id="home">
-    <header>
-      <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand">Reading List</a>
-      </nav>
-    </header>
     <section id="aboutSection">
       <div id="aboutContainer">
         <h1 id="title">Reading List</h1>
@@ -41,10 +36,6 @@ export default {
 </script>
 
 <style scoped>
-.navbar-brand{
-  color: #ffffff !important;
-}
-
 .container {
   max-width: 1140px;
   margin: auto;

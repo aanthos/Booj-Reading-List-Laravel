@@ -1,6 +1,6 @@
 <template>
     <div id="addbook">
-        <h4>Search Results</h4>
+        <h3>Search Results</h3>
         <div class="card">
             <div class="row no-gutters">
                 <div class="col-md-3">
@@ -10,12 +10,19 @@
                     <div class="card-body">
                         <h5 id="book-title" class="card-title">{{ title }}</h5>
                         <p id="author">{{ author }}</p>
-                        <button @click="addToUserList" type="button" class="click">Add to List</button>
+                        <button 
+                            @click="addToUserList" 
+                            type="button" 
+                            class="btn btn-primary btn-sm">
+                            Add to List
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-        <p class="error-text" v-if="error">{{ title }} (ISBN: {{ isbn }}) is already in your book list.</p>
+        <p class="error-text" v-if="error">
+            {{ title }} (ISBN: {{ isbn }}) is already in your book list.
+        </p>
     </div>
 </template>
 

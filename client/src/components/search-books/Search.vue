@@ -1,8 +1,14 @@
 <template>
     <div id="search">
+        <h3>Search for a Book</h3>
             <form @submit.prevent="onSubmit()">
-                <input type="text" v-model.trim="searchInput">
-                <button type="submit" value="Submit" class="btn btn-primary">Search Book</button>
+                <input id="inputField" type="text" v-model.trim="searchInput">
+                <button 
+                    type="submit" 
+                    value="Submit" 
+                    class="btn btn-primary">
+                    <v-icon name="search"/>
+                </button>
                 <br>
                 By:
                 <input type ="radio" name="ISBN" value="ISBN" v-model="searchType"> ISBN
@@ -19,7 +25,7 @@
                 :publishDate="publishDate">
             </AddBook>
 
-            <p v-if="errored" id="errored">Could not find book using {{ isbn }} in the database. Please try again or use other code.</p>
+            <p v-if="errored" id="errored">Could not find book in the database. Please try again or use other code.</p>
     </div>
 </template>
 
@@ -81,5 +87,13 @@ export default {
 <style scoped>
 #errored {
     color: red;
+}
+
+#inputField {
+    padding: 5px;
+}
+
+.btn {
+    margin-left: 5px;
 }
 </style>

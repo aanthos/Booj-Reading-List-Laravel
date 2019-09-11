@@ -7,15 +7,32 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-title">
-                        <h5 id="book-title">{{ title }}</h5>
-                        <button @click="selectForDetails">Display Details</button>
+                        <p id="book-title">{{ title }}</p>
+                        <button 
+                            @click="selectForDetails"
+                            class="btn btn-primary btn-sm">
+                            Display Details
+                        </button>
                     </div>
                 </div>
                 <div class="col-md-1">
                     <div class="card-body">
-                    <button @click="shiftUp" class="btn btn-primary">^</button>
-                    <button @click="removeFromUserList" id="remove" class="btn btn-danger">-</button>
-                    <button @click="shiftDown" class="btn btn-primary">v</button>
+                    <button 
+                        @click="shiftUp"
+                        class="btn btn-link">
+                        <v-icon name="chevron-up"/>
+                    </button>
+                    <button 
+                        @click="removeFromUserList" 
+                        id="remove" 
+                        class="btn btn-link">
+                        <v-icon name="minus"/>
+                    </button>
+                    <button 
+                        @click="shiftDown" 
+                        class="btn btn-link">
+                        <v-icon name="chevron-down"/>
+                    </button>
                     </div>
                 </div>
             </div>
@@ -54,5 +71,20 @@ export default {
 </script>
 
 <style scoped>
+.shiftButton {
+    background-color: #ffffff;
+}
 
+.card-body {
+    padding: 0 0 0 50%;
+}
+
+#remove {
+    color: red;
+}
+
+#book-title {
+    padding: 5% 0 0 0;
+    margin-bottom: 5px;
+}
 </style>
