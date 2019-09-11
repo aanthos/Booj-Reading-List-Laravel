@@ -25,13 +25,13 @@ Vue.use(Vuex)
 /**
  * Imports all of the modules used in the application
  */
-import { books } from './modules/books.js'
+import { bookStore } from './modules/bookStore'
 
 /**
  * Exports the data store
  */
 export const store = new Vuex.Store({
     modules: {
-        books,
+        bookStore,
     }
 })

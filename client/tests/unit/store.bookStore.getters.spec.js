@@ -1,4 +1,4 @@
-import { books } from '../../src/store/modules/books'
+import { bookStore } from '@/store/modules/bookStore'
 
 /**
  * Tests the books getter in the books module of the Vuex store
@@ -27,7 +27,7 @@ test('books returns an array of book if it has any book', () => {
         ]
     }
 
-    expect(books.getters.books(state)).toEqual([
+    expect(bookStore.getters.books(state)).toEqual([
         {
             name: 'A Man Called Ove',
             isbn: '9781476738024',
@@ -49,36 +49,6 @@ test('books returns an array of book if it has any book', () => {
     ])
 })
 
-/**
- * Tests selectedBookDetails getter from books module in Vuex store
- */
-
-// test('selectedBookDetails returns a single book object', () => {
-//     const state = {
-//         selectedBook: {
-//             name: 'To Kill a Mockingbird',
-//             isbn: '9780060935467',
-//             title: 'To Kill a Mockingbird',
-//             coverPath: 'https://covers.openlibrary.org/b/id/8758697-M.jpg',
-//             author: 'Harper Lee',
-//             publisher: 'Perennial Classics',
-//             publishDate: '2002',
-//         }
-//     }
-
-//     var book = {
-//         name: 'To Kill a Mockingbird',
-//         isbn: '9780060935467',
-//         title: 'To Kill a Mockingbird',
-//         coverPath: 'https://covers.openlibrary.org/b/id/8758697-M.jpg',
-//         author: 'Harper Lee',
-//         publisher: 'Perennial Classics',
-//         publishDate: '2002',
-//     }
-
-//     expect(books.getters.selectedBookDetails(state.selectedBook)).toEqual(book)
-// })
-
 /** 
  * Tests showDetailsPage getter from books module in Vuex store
  */
@@ -86,12 +56,12 @@ test('showDetailsPage returns true if state.showDetailsPage is true', () => {
     const state = {
         showDetailsPage: true
     }
-    expect(books.getters.showDetailsPage(state)).toBe(true)
+    expect(bookStore.getters.showDetailsPage(state)).toBe(true)
 })
 
 test('showDetailsPage returns false if state.showDetailsPage is false', () => {
     const state = {
         showDetailsPage: false
     }
-    expect(books.getters.showDetailsPage(state)).toBe(false)
+    expect(bookStore.getters.showDetailsPage(state)).toBe(false)
 })

@@ -8,7 +8,7 @@
                 v-bind:title="book.title"
                 v-bind:coverPath="book.coverPath">
             </Book>
-            <button id="ascending" @click="sortAlphabeticallyAscending" class="btn btn-primary">Sort Alphabetically Ascending</button>
+            <button @click="sortAlphabeticallyAscending" class="btn btn-primary">Sort Alphabetically Ascending</button>
             <button @click="sortAlphabeticallyDescending" class="btn btn-primary">Sort Alphabetically Descending</button>
         </div>
 </template>
