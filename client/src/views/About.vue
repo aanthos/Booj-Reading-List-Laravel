@@ -17,6 +17,13 @@
       </ul>
       <p class="githubInfo">You can also see the basic backend implementation using Laravel as well as the Postman collection for it.
       </p>
+      <p class="githubInfo">Here are a couple of ISBNs to get you testing. They were found on the Amazon listing of the books:</p>
+      <ul>
+        <li>The Lies of Locke Lamora: 9780553588941</li>
+        <li>A Man Called Ove: 9781476738024</li>
+        <li>To Kill A Mocking Bird: 0060935464</li>
+      </ul>
+      <p class="githubInfo">All book information is currently being pulled from the Open Library Books API. You can find more information on this <a href="https://openlibrary.org/dev/docs/api/books">here</a></p>
     </div>
   </div>
 </template>
