@@ -1,14 +1,14 @@
 /*
 |-------------------------------------------------------------------------------
-| VUEX modules/books.js
+| VUEX modules/bookStore.js
 |-------------------------------------------------------------------------------
 | The Vuex data store for the user's book list
 */
 
 /**
- * Exports the books module
+ * Exports the bookStore module
  */
-export const books = {
+export const bookStore = {
     state: {
         /**
          * books is an array of book, each of which contains 
@@ -45,7 +45,7 @@ export const books = {
         },
 
         /**
-         * Takes in Book id and finds out the index position of the Book in state.books.
+         * Takes in Book isbn and finds out the index position of the Book in state.books.
          * Then removes this book.
          */
         removeBookFromUserList(state, isbn) {

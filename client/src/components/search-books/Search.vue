@@ -26,7 +26,7 @@
 <script>
 import axios from 'axios'
 import AddBook from './AddBook.vue'
-import { OPEN_LIBRARY_API_URL, OPEN_LIBRARY_FORMAT_JSON_TAG } from '../../config'
+import { OPEN_LIBRARY_API_URL, OPEN_LIBRARY_FORMAT_JSON_TAG, OPEN_LIBRARY_FORMAT_DATA_TAG } from '../../config'
 
 /**
  *  Check https://vuejs.org/v2/cookbook/using-axios-to-consume-apis.html
@@ -56,7 +56,7 @@ export default {
         onSubmit() {
             var searchParameters = this.searchType + ":" + this.searchInput
             axios
-                .get(OPEN_LIBRARY_API_URL + this.searchType + ":" + this.searchInput + '&jscmd=data' + OPEN_LIBRARY_FORMAT_JSON_TAG)
+                .get(OPEN_LIBRARY_API_URL + this.searchType + ":" + this.searchInput + OPEN_LIBRARY_FORMAT_DATA_TAG + OPEN_LIBRARY_FORMAT_JSON_TAG)
                 .then(response => {
                     this.isbn = response.data[searchParameters].identifiers.isbn_13[0]
                     this.title = response.data[searchParameters].title
