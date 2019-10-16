@@ -23,3 +23,10 @@ The Reading List has a basic implementation of a Laravel back-end to allow for f
 
 ##### Postman Collection
 A postman collection is provided for testing the Laravel API. 
+
+##### TODO
+npm install
+install vue-awesome separately
+install bootstrap-vue separately
+npm run production to generate mix-manifest to be able to use app.js from Vue in Laravel spa.blade.php views.
+    web.php set up to work with vue-router

@@ -1,8 +1,2 @@
-# Ignore cache folder in node_modules
-client/node_modules/.cache
-client/node_modules/.cache/babel-loader
-client/node_modules/.cache/babel-loader/686adf13b28c43849b82a3cfa063481b.json
-client/node_modules/.cache/babel-loader/9174e57bd3cfea1e50a41f0106ee8ec9.json
-client/node_modules/.cache/babel-loader/a8c293a84499f0c812470c03c5f52a1b.json
-client/node_modules/.cache/babel-loader/abbdc901ef9ce480954482f1fb23bb59.json
-client/node_modules/.cache/babel-loader/bbd50a26a47d56ca3c58a414e3fc4764.json
+node_modules
+vendor
