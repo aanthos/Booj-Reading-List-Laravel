@@ -14,7 +14,7 @@ export const bookStore = {
     state: {
         /**
          * books is an array of book, each of which contains 
-         * isbn, title, coverPath, author, publisher, & publishDate JSON fields
+         * id, isbn, title, coverPath, author, publisher, & publishDate JSON fields
          */
         books: [],
         /**
@@ -31,29 +31,25 @@ export const bookStore = {
 
     mutations: {
         /**
-         * Takes in book array selected by user in AddBook.vue
+         * Takes in book array selected by user in AddBook.vue after addBook dispatch
          * and formats it into JSON before pushing it into state.books array
          */
-        ADD_BOOK(state, receivedBook) {
-            // const book = {
-            //     isbn: receivedBook[0],
-            //     title: receivedBook[1],
-            //     coverPath: receivedBook[2],
-            //     author: receivedBook[3],
-            //     publisher: receivedBook[4],
-            //     publishDate: receivedBook[5],
-            // }
-            state.books.push(receivedBook)
+        ADD_BOOK(state, book) {
+            state.books.push(book)
         },
 
         /**
          * Takes in Book isbn and finds out the index position of the Book in state.books.
          * Then removes this book.
          */
-        removeBookFromUserList(state, isbn) {
+        REMOVE_BOOK(state, isbn) {
             let position = state.books.findIndex(book => book.isbn === isbn)
             state.books.splice(position, 1)
         },
+        // removeBookFromUserList(state, isbn) {
+        //     let position = state.books.findIndex(book => book.isbn === isbn)
+        //     state.books.splice(position, 1)
+        // },
 
         /**
          * Compares title of books in state.books and sorts them alphabetically in ascending order
@@ -125,24 +121,46 @@ export const bookStore = {
     },
 
     actions: {
-        addBook({commit}, book) {
-            // const book = {
-            //     isbn: receivedBook[0],
-            //     title: receivedBook[1],
-            //     coverPath: receivedBook[2],
-            //     author: receivedBook[3],
-            //     publisher: receivedBook[4],
-            //     publishDate: receivedBook[5],
-            // }
-
-            // console.log(book)
-
-            axios.post('/api/books', book).then(res => {
-                    commit('ADD_BOOK', res.data.data)
-                    console.log('Added book to database')
-            }).catch(err => {
-                    console.log(err)
+        /**
+         *  
+         */
+        getBooks({commit}) {
+            axios.get('/api/books').then(
+                commit('GET_BOOKS', response.data.data),
+                console.log('All books obtained from database')
+            ).catch(err => {
+                console.log(err)
             })
+        },
+
+        /**
+         * Asynchronously sends POST request to laravel api to store book in database. 
+         * Then, commits mutation 'ADD_BOOK' to add book to state.books array above
+         */
+        addBook({commit}, book) {
+            // TODO add if statement for preventing database duplicates
+            axios.post('/api/books', book).then(response => {
+                commit('ADD_BOOK', response.data.data)
+                console.log('Added book to database')
+            }).catch(err => {
+                console.log(err)
+            })
+        },
+        
+        /**
+         * Asynchronously sends DELETE request to laravel api to delete certain book in database.
+         * Then, commits mutation 'REMOVE_BOOK' to remove book from state.books array 
+         */
+        removeBook({commit, state}, isbn) {
+            let position = state.books.findIndex(book => book.isbn === isbn)
+            let id = state.books[position].id
+            axios.delete('/api/books/' + id).then(
+                commit('REMOVE_BOOK', isbn),
+                console.log('Removed book from the database')
+            ).catch(err => {
+                console.log(err)
+            })
+            
         },
     },
 

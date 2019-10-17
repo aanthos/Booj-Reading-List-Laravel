@@ -15,7 +15,7 @@
         </p>
 
         <Book 
-            v-for="book in this.$store.getters.books"
+            v-for="book in books"
             v-bind:key="book.isbn"
             v-bind:isbn="book.isbn"
             v-bind:title="book.title"
@@ -33,11 +33,6 @@ export default {
     components: {
         Book
     },
-    // data () {
-    //     // return {
-    //     //     savedBooks: this.$store.getters.books
-    //     // }
-    // },
     computed: {
         ...mapGetters([ 'books' ])
     },

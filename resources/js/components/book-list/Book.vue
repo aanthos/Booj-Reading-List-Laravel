@@ -52,7 +52,8 @@ export default {
     methods: {
         // removes book item from list after pressing using Vuex books module
         removeFromUserList() {
-            this.$store.commit("removeBookFromUserList", this.isbn)
+            // this.$store.commit("removeBookFromUserList", this.isbn)
+            this.$store.dispatch("removeBook", this.isbn)
         },
         // shifts book item up in the list using Vuex books module
         shiftUp() {
