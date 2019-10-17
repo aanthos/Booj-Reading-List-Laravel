@@ -14,7 +14,7 @@ export const bookStore = {
     state: {
         /**
          * books is an array of book, each of which contains 
-         * id, isbn, title, coverPath, author, publisher, & publishDate JSON fields
+         * id, isbn, title, coverPath, author, publisher, publishDate, created_at, & updated_at JSON fields
          */
         books: [],
         /**
@@ -31,13 +31,20 @@ export const bookStore = {
 
     mutations: {
         /**
+         *  Called by getBooks() action 
+         */
+        GET_BOOKS(state, data) {
+            for(var book in data) {
+                state.books.push( data[book])
+            }
+        },
+        /**
          * Takes in book array selected by user in AddBook.vue after addBook dispatch
          * and formats it into JSON before pushing it into state.books array
          */
         ADD_BOOK(state, book) {
             state.books.push(book)
         },
-
         /**
          * Takes in Book isbn and finds out the index position of the Book in state.books.
          * Then removes this book.
@@ -46,11 +53,6 @@ export const bookStore = {
             let position = state.books.findIndex(book => book.isbn === isbn)
             state.books.splice(position, 1)
         },
-        // removeBookFromUserList(state, isbn) {
-        //     let position = state.books.findIndex(book => book.isbn === isbn)
-        //     state.books.splice(position, 1)
-        // },
-
         /**
          * Compares title of books in state.books and sorts them alphabetically in ascending order
          */
@@ -119,23 +121,22 @@ export const bookStore = {
             state.selectedBookDetails = state.books[position]
         }
     },
-
     actions: {
         /**
-         *  
+         *  Asynchronously sends GET request to laravel api to receive all books currently in the database.
+         * Commits mutation 'GET_BOOKS' to add books in database to store.books array when Home.vue is loaded
          */
         getBooks({commit}) {
-            axios.get('/api/books').then(
-                commit('GET_BOOKS', response.data.data),
+            axios.get('/api/books').then( response => {
+                commit('GET_BOOKS', response.data.data)
                 console.log('All books obtained from database')
-            ).catch(err => {
+            }).catch(err => {
                 console.log(err)
             })
         },
-
         /**
          * Asynchronously sends POST request to laravel api to store book in database. 
-         * Then, commits mutation 'ADD_BOOK' to add book to state.books array above
+         * Commits mutation 'ADD_BOOK' to add book to state.books array above
          */
         addBook({commit}, book) {
             // TODO add if statement for preventing database duplicates
@@ -146,10 +147,9 @@ export const bookStore = {
                 console.log(err)
             })
         },
-        
         /**
          * Asynchronously sends DELETE request to laravel api to delete certain book in database.
-         * Then, commits mutation 'REMOVE_BOOK' to remove book from state.books array 
+         * Commits mutation 'REMOVE_BOOK' to remove book from state.books array 
          */
         removeBook({commit, state}, isbn) {
             let position = state.books.findIndex(book => book.isbn === isbn)
@@ -160,7 +160,6 @@ export const bookStore = {
             ).catch(err => {
                 console.log(err)
             })
-            
         },
     },
 
