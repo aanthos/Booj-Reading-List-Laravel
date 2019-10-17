@@ -47,6 +47,9 @@ export default {
     methods: {
         /**
          * Adds book to Vuex data store in books module if not already in user's book list
+         * Uses dispatch() to call addBook action, which does a POST request
+         * to the laravel API to add a book to the database.
+         * It then commits a mutation to add the book to the Vuex store
          */
         addToUserList() {
             var potentialBook = [this.isbn, this.title, this.coverPath, this.author, this.publisher, this.publishDate]
@@ -60,7 +63,14 @@ export default {
             }
 
             if(!found) {
-                this.$store.commit("pushBookToUserList", potentialBook)
+                this.$store.dispatch("addBook", {
+                    isbn: this.isbn,
+                    title: this.title,
+                    coverPath: this.coverPath,
+                    author: this.author,
+                    publisher: this.publisher,
+                    publishDate: this.publishDate,
+                })
                 this.error = false
             }
             else {

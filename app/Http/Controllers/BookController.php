@@ -45,7 +45,6 @@ class BookController extends Controller
     {
         // MUST place ALL fields in validate or they will be excluded when using $request->all().
         $request->validate([
-            'name'          => 'required|max:255',
             'isbn'          => '', 
             'title'         => '', 
             'coverPath'       => '',

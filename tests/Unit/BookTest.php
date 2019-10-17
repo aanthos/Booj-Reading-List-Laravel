@@ -19,7 +19,6 @@ class BookTest extends TestCase
 
     public function testGetFirstBook() {
         $book = Book::create([
-            'name'          => 'unitTest',
             'isbn'          => '1234567890',
             'title'         => 'booktitle',
             'coverPath'     => 'jpg',
@@ -36,7 +35,6 @@ class BookTest extends TestCase
     public function testBookCreation() 
     {
         $response = $this->json('POST', '/api/books', [
-            'name'          => 'unitTest',
             'isbn'          => '1234567890',
             'title'         => 'booktitle',
             'coverPath'     => 'jpg',
@@ -50,7 +48,6 @@ class BookTest extends TestCase
 
     public function testDeleteAllBooks() {
         $book = Book::create([
-            'name'          => 'unitTest',
             'isbn'          => '1234567890',
             'title'         => 'booktitle',
             'coverPath'     => 'jpg',
@@ -66,7 +63,6 @@ class BookTest extends TestCase
 
     public function testDeleteBookResource() {
         $book = Book::create([
-            'name'          => 'unitTest',
             'isbn'          => '1234567890',
             'title'         => 'booktitle',
             'coverPath'     => 'jpg',
