@@ -1,3 +1,5 @@
+import axios from "axios"
+
 /*
 |-------------------------------------------------------------------------------
 | VUEX modules/bookStore.js
@@ -32,16 +34,16 @@ export const bookStore = {
          * Takes in book array selected by user in AddBook.vue
          * and formats it into JSON before pushing it into state.books array
          */
-        pushBookToUserList(state, receivedBook) {
-            const book = {
-                isbn: receivedBook[0],
-                title: receivedBook[1],
-                coverPath: receivedBook[2],
-                author: receivedBook[3],
-                publisher: receivedBook[4],
-                publishDate: receivedBook[5],
-            }
-            state.books.push(book)
+        ADD_BOOK(state, receivedBook) {
+            // const book = {
+            //     isbn: receivedBook[0],
+            //     title: receivedBook[1],
+            //     coverPath: receivedBook[2],
+            //     author: receivedBook[3],
+            //     publisher: receivedBook[4],
+            //     publishDate: receivedBook[5],
+            // }
+            state.books.push(receivedBook)
         },
 
         /**
@@ -120,6 +122,28 @@ export const bookStore = {
             let position = state.books.findIndex(book => book.isbn === isbn)
             state.selectedBookDetails = state.books[position]
         }
+    },
+
+    actions: {
+        addBook({commit}, book) {
+            // const book = {
+            //     isbn: receivedBook[0],
+            //     title: receivedBook[1],
+            //     coverPath: receivedBook[2],
+            //     author: receivedBook[3],
+            //     publisher: receivedBook[4],
+            //     publishDate: receivedBook[5],
+            // }
+
+            // console.log(book)
+
+            axios.post('/api/books', book).then(res => {
+                    commit('ADD_BOOK', res.data.data)
+                    console.log('Added book to database')
+            }).catch(err => {
+                    console.log(err)
+            })
+        },
     },
 
     getters: {

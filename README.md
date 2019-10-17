@@ -25,8 +25,14 @@ The Reading List has a basic implementation of a Laravel back-end to allow for f
 A postman collection is provided for testing the Laravel API. 
 
 ##### TODO
+Documentation:
 npm install
 install vue-awesome separately
 install bootstrap-vue separately
-npm run production to generate mix-manifest to be able to use app.js from Vue in Laravel spa.blade.php views.
+npm run production to generate mix-manifest to be able to use app.js (everytime you change Vue app) from Vue in Laravel spa.blade.php views.
     web.php set up to work with vue-router
+
+Tasks:
+Integrate Jest tests in laravel
+Have Laravel and Vue communicate together (API calls)
+    https://pusher.com/tutorials/search-laravel-vue

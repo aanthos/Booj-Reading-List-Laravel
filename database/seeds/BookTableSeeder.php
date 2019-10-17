@@ -18,7 +18,6 @@ class BookTableSeeder extends Seeder
     public function run()
     {
         Book::create([
-            'name'          => 'Test Book',
             'isbn'          => '1234567890',
             'title'         => 'The Bookening',
             'coverPath'     => 'jpg',
@@ -28,7 +27,6 @@ class BookTableSeeder extends Seeder
         ]);
 
         Book::create([
-            'name'          => 'A Man Called Ove',
             'isbn'          => '9781476738024',
             'title'         => 'A Man Called Ove',
             'coverPath'     => 'https://covers.openlibrary.org/b/id/8314262-M.jpg',
@@ -38,7 +36,6 @@ class BookTableSeeder extends Seeder
         ]);
 
         Book::create([
-            'name'          => 'To Kill a Mockingbird',
             'isbn'          => '9780060935467',
             'title'         => 'To Kill a Mockingbird',
             'coverPath'     => 'https://covers.openlibrary.org/b/id/8758697-M.jpg',

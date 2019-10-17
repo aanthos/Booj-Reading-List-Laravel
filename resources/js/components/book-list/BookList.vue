@@ -15,7 +15,7 @@
         </p>
 
         <Book 
-            v-for="book in savedBooks"
+            v-for="book in this.$store.getters.books"
             v-bind:key="book.isbn"
             v-bind:isbn="book.isbn"
             v-bind:title="book.title"
@@ -26,16 +26,20 @@
 
 <script>
 import Book from './Book.vue'
+import { mapGetters } from 'vuex'
 
 export default {
     name: 'BookList',
     components: {
         Book
     },
-    data () {
-        return {
-            savedBooks: this.$store.getters.books
-        }
+    // data () {
+    //     // return {
+    //     //     savedBooks: this.$store.getters.books
+    //     // }
+    // },
+    computed: {
+        ...mapGetters([ 'books' ])
     },
     methods: {
         sortAlphabeticallyAscending() {
