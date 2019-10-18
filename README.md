@@ -47,7 +47,7 @@ npm install bootstrap-vue bootstrap
 ```
 #### Installing Dependencies for Laravel
 ```
-composer global require laravel/installer
+composer install
 ```
 
 ## Run Application
