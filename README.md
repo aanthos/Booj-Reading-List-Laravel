@@ -18,21 +18,60 @@ This application currently connects to the Open Library API (https://openlibrary
 ##### Vuex
 This application was built as if it would become a larger-scale application in the future. With this Vue application needing communication between components without a parent-child relationship, a centralized state storage was necessary for mutating and sending data for the components in a clean and predictable way. Mutators and getters in the store modules were tested using Jest.
 
+Actions are dispatched when events are triggered in Vue components. These actions use axios to make HTTP requests to Laravel in order to send or receive data from the database. Corresponding mutations are then called within the axios HTTP request (if successful) to commit changes to the state. This allows for the Vue application to reflect the data in the database and for the database to collect new data from the user's interactions on the Vue application.
+
 #### Server - Laravel
-The Reading List has a basic implementation of a Laravel back-end to allow for further development of the application in the future. The book models in Laravel contain the same data fields as the data requested in the Vue front-end. In future developments, this will allow for user-specific features such as saving book lists and loading lists from the server or creating user accounts. 
+The book models in Laravel contain the same data fields as the data requested in the Vue front-end. As mentioned above, the Vue application sends data to the Laravel api to hold on to (such as the books stored in a user's booklist) so that when the Vue application is refreshed, the same books the user entered from a previous session are restored. 
+
+The Laravel server is structured as a RESTful api and contains GET, POST, and DELETE requests as of now for the Vue application to call whenever it needs to pull up a user's booklist, add a book, and remove a book. The database is sqlite.
+
+Although there is no user account implementation yet, this will be created in the future to ensure any user who visits the website can "create an account" and have a user-specific book list.
 
 ##### Postman Collection
-A postman collection is provided for testing the Laravel API. 
+A postman collection is provided for testing the Laravel api.
 
-##### TODO
-Documentation:
+## Prerequisites:
+You must have Node.js and NPM are installed on your machine to be able to compile Vue assets. Ensure they are installed using:
+```
+node -v
+npm -v
+```
+You also need several installations for Laravel. Please go to their installation page (https://laravel.com/docs/5.8/installation) and make sure the server requirements and Composer are installed.
+
+## Installation
+#### Installing Dependencies for Vue
+```
 npm install
-install vue-awesome separately
-install bootstrap-vue separately
-npm run production to generate mix-manifest to be able to use app.js (everytime you change Vue app) from Vue in Laravel spa.blade.php views.
-    web.php set up to work with vue-router
+npm install vue-awesome
+npm install bootstrap-vue bootstrap
+```
+#### Installing Dependencies for Laravel
+```
+composer global require laravel/installer
+```
 
-Tasks:
-Integrate Jest tests in laravel
-Have Laravel and Vue communicate together (API calls)
-    https://pusher.com/tutorials/search-laravel-vue
+## Run Application
+Run the following command to make sure Laravel Mix compiles Vue assets:
+```
+npm run dev
+```
+To start the Laravel server, run: 
+```
+php artisan serve
+```
+## Run Tests
+#### Laravel Unit Tests
+Make sure phpunit is installed. If not, run:
+```
+sudo apt install phpunit
+```
+Run the following command from the project root directory:
+```
+phpunit
+```
+
+#### Vue Unit Tests
+Run the following command from the project root directory:
+```
+npm test
+```

@@ -31,9 +31,6 @@ export default {
     Search,
     BookList,
     BookDetails
-  },
-  mounted () {
-    this.$store.dispatch("getBooks")
   }
 }
 </script>
